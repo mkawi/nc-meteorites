@@ -1,9 +1,45 @@
+import { useEffect, useState } from "react";
+import { csvFormat, csvParse } from "d3"
+
+import meteoriteData from "./data/Meteorite_Landings_20240205 - cleaned.csv"
+import Earth from "./components/Earth";
+
 function App() {
-  return (
-    <div>
-      <h1 className="bg-red-50 p-3 text-4xl font-bold">TEST</h1>
-    </div>
-  );
+	const [data, setData] = useState([]);
+
+	useEffect(() => {
+		async function fetchData() {
+			const csvString = csvFormat(meteoriteData)
+			const formattedData = csvParse(csvString, ({ reclat, reclong, mass }) => {
+				let weight = 0;
+
+				if (mass < 1000) {
+					weight = 0.25
+				} else if (mass < 10000) {
+					weight = 1
+				} else if (mass < 100000) {
+					weight = 2.5
+				} else if (mass < 1000000) {
+					weight = 7.5
+				} else if (mass <= 10000000) {
+					weight = 15
+				} else if (mass > 10000000) {
+					weight = 20
+				}
+
+				return { lat: reclat, lng: reclong, mass: weight }
+			})
+			setData(formattedData)
+		}
+
+		fetchData()
+	}, []);
+
+	return (
+		<>
+			<Earth meteorites={data} />
+		</>
+	);
 }
 
 export default App;
