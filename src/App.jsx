@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { csvFormat, csvParse } from "d3"
 
-import meteoriteData from "./data/Meteorite_Landings_20240205 - cleaned.csv"
 import Earth from "./components/Earth";
+import Navigation from "./components/Navigation";
+
+import meteoriteData from "./data/Meteorite_Landings_20240205 - cleaned.csv"
 
 function App() {
 	const [data, setData] = useState([]);
@@ -37,6 +39,7 @@ function App() {
 
 	return (
 		<>
+			<Navigation total={data.length} />
 			<Earth meteorites={data} />
 		</>
 	);
