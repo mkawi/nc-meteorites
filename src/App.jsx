@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { csvFormat, csvParse } from "d3"
 
-import Earth from "./components/Earth";
-import Navigation from "./components/Navigation";
+import Globe from "./pages/Globe";
 
 import meteoriteData from "./data/Meteorite_Landings_20240205 - cleaned.csv"
 
@@ -39,8 +38,7 @@ function App() {
 
 	return (
 		<>
-			<Navigation total={data.length} />
-			<Earth meteorites={data} />
+			<Globe meteorites={data} />
 		</>
 	);
 }
