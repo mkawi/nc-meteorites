@@ -1,11 +1,9 @@
-function List() {
+function List({ meteorites }) {
     return (
-        <main>
-            <section>
-                <h1>Meteorites</h1>
-                <h3>List View</h3>
-            </section>
-        </main>
+        <section>
+            <h1>Meteorites</h1>
+            <h3>List View</h3>
+        </section>
     )
 }
 
