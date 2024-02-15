@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import { csvFormat, csvParse } from "d3"
 
 import Globe from "./pages/Globe";
+import List from "./pages/List"
 
 import meteoriteData from "./data/Meteorite_Landings_20240205 - cleaned.csv"
 
@@ -37,9 +39,10 @@ function App() {
 	}, []);
 
 	return (
-		<>
-			<Globe meteorites={data} />
-		</>
+		<Routes>
+			<Route path="/" element={<Globe meteorites={data} />} />
+			<Route path="/list" element={<List meteorites={data} />} />
+		</Routes>
 	);
 }
 
